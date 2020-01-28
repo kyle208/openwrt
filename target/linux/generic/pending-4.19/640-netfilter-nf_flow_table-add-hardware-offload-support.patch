@@ -237,7 +237,7 @@ Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
  	INIT_DEFERRABLE_WORK(&flowtable->gc_work, nf_flow_offload_work_gc);
  
  	err = rhashtable_init(&flowtable->rhashtable,
-@@ -535,6 +580,8 @@ static void nf_flow_table_iterate_cleanu
+@@ -538,6 +583,8 @@ static void nf_flow_table_iterate_cleanu
  {
  	nf_flow_table_iterate(flowtable, nf_flow_table_do_cleanup, dev);
  	flush_delayed_work(&flowtable->gc_work);
@@ -246,7 +246,7 @@ Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
  }
  
  void nf_flow_table_cleanup(struct net *net, struct net_device *dev)
-@@ -548,6 +595,26 @@ void nf_flow_table_cleanup(struct net *n
+@@ -551,6 +598,26 @@ void nf_flow_table_cleanup(struct net *n
  }
  EXPORT_SYMBOL_GPL(nf_flow_table_cleanup);
  
@@ -273,7 +273,7 @@ Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
  void nf_flow_table_free(struct nf_flowtable *flow_table)
  {
  	mutex_lock(&flowtable_lock);
-@@ -557,9 +624,58 @@ void nf_flow_table_free(struct nf_flowta
+@@ -560,9 +627,58 @@ void nf_flow_table_free(struct nf_flowta
  	nf_flow_table_iterate(flow_table, nf_flow_table_do_cleanup, NULL);
  	WARN_ON(!nf_flow_offload_gc_step(flow_table));
  	rhashtable_destroy(&flow_table->rhashtable);
@@ -552,7 +552,7 @@ Signed-off-by: Pablo Neira Ayuso <pablo@netfilter.org>
  	nest = nla_nest_start(skb, NFTA_FLOWTABLE_HOOK);
 --- a/net/netfilter/nft_flow_offload.c
 +++ b/net/netfilter/nft_flow_offload.c
-@@ -127,6 +127,9 @@ static void nft_flow_offload_eval(const
+@@ -126,6 +126,9 @@ static void nft_flow_offload_eval(const
  	if (ret < 0)
  		goto err_flow_add;
  
