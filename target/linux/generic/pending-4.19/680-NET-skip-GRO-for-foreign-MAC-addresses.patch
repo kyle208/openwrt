@@ -107,7 +107,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	call_netdevice_notifiers_info(NETDEV_CHANGEUPPER,
  				      &changeupper_info.info);
  
-@@ -7884,6 +7931,7 @@ int dev_set_mac_address(struct net_devic
+@@ -7893,6 +7940,7 @@ int dev_set_mac_address(struct net_devic
  	if (err)
  		return err;
  	dev->addr_assign_type = NET_ADDR_SET;
